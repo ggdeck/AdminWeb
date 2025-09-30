@@ -1,3 +1,3 @@
 <?php
-include 'src/login.php';
+include 'login.php';
 ?>
