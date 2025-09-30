@@ -1,8 +1,8 @@
 <?php
-$host = getenv('DB_HOST') ?: 'localhost';
-$db   = getenv('DB_DATABASE') ?: 'e-voting'; // Sesuaikan dengan nama database kamu
+$host = getenv('DB_HOST') ?: 'mysql.railway.internal';
+$db   = getenv('DB_DATABASE') ?: 'railway';
 $user = getenv('DB_USERNAME') ?: 'root';
-$pass = getenv('DB_PASSWORD') ?: '';
+$pass = getenv('DB_PASSWORD') ?: 'mtUTprOhWarfnJdwcDbbMKTozkcNyrln'; // isi lengkap dari MYSQLPASSWORD
 $port = getenv('DB_PORT') ?: '3306';
 
 $konek = new mysqli($host, $user, $pass, $db, $port);
