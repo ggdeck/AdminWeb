@@ -9,7 +9,10 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 COPY ./src /var/www/html
-RUN chown -R www-data:www-data /var/www/html
+# Ganti kepemilikan & izin folder
+RUN chown -R www-data:www-data /var/www/html \
+    && chmod -R 755 /var/www/html
+
 
 EXPOSE 8080
 CMD ["apache2-foreground"]
