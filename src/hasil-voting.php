@@ -1,22 +1,25 @@
 <?php
 session_start();
 
+// ✅ Cek login admin
 if (!isset($_SESSION['admin_id'])) {
     header("Location: login.php");
     exit;
 }
 
-// Konfigurasi database
-$host = 'localhost';
-$dbname = 'e-voting';
-$username = 'root';
-$password = '';
+// ✅ Konfigurasi database (Railway)
+$host = getenv('DB_HOST') ?: 'mysql.railway.internal';
+$dbname = getenv('DB_DATABASE') ?: 'railway';
+$username = getenv('DB_USERNAME') ?: 'root';
+$password = getenv('DB_PASSWORD') ?: 'mtUTprOhWarfnJdwcDbbMKTozkcNyrln';
+$port = getenv('DB_PORT') ?: '3306';
 
 try {
-    $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
+    // ✅ Gunakan variabel yang sama (tidak tumpang tindih)
+    $pdo = new PDO("mysql:host=$host;port=$port;dbname=$dbname", $username, $password);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch(PDOException $e) {
-    die("Koneksi gagal: " . $e->getMessage());
+} catch (PDOException $e) {
+    die("❌ Koneksi gagal: " . $e->getMessage());
 }
 
 // Proses logout
