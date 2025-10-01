@@ -81,33 +81,56 @@ if (isset($_POST['login'])) {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PILKETOS | SMPN 6 Cibitung</title>
     <link rel="shortcut icon" type="image/x-icon" href="images/image.png">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+        }
+        
         body {
-            height: 100vh;
-            background: rgba(30, 43, 188, 1);
+            min-height: 100vh;
             font-family: 'Poppins', sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
+            padding: 20px;
+            background: linear-gradient(rgba(30, 43, 188, 0.8), rgba(30, 43, 188, 0.9)), 
+                        url('https://www.lesprivatinsan.com/wp-content/uploads/2021/10/les-privat-cibitung-bekasi-smpn-6-1024x768.jpg') no-repeat center center fixed;
+            background-size: cover;
+            position: relative;
+        }
+
+        /* Overlay untuk meningkatkan kontras */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: -1;
         }
 
         .login-container {
-            background: white;
-            border-radius: 16px;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 24px;
             padding: 40px 30px;
-            width: 363px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 450px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
             text-align: left;
-            color: black;
+            color: #333;
             opacity: 0;
             transform: translateY(30px);
             animation: fadeInUp 1s ease forwards;
+            position: relative;
+            z-index: 1;
         }
 
         @keyframes fadeInUp {
@@ -130,98 +153,108 @@ if (isset($_POST['login'])) {
             100% { transform: translateX(0); }
         }
 
-        .login-container h2 {
-            text-align: center;
-            margin-bottom: 25px;
-            font-weight: 650;
-        }
-
-        .login-container input {
-            width: 100%;
-            padding: 12px 15px;
-            margin: 10px 0;
-            border-radius: 8px;
-            border: 1px solid #ccc;
-            outline: none;
-            font-size: 14px;
-            background: rgba(255, 255, 255, 0.8);
-            color: black;
-            transition: border-color 0.3s ease;
-        }
-
-        .login-container input:focus {
-            border-color: rgb(51, 149, 174);
-            box-shadow: 0 0 5px rgba(51, 149, 174, 0.5);
-        }
-
-        .login-container button {
-            width: 100%;
-            padding: 12px;
-            border-radius: 8px;
-            border: none;
-            background: rgba(30, 43, 188, 1);
-            color: #fff;
-            font-weight: 600;
-            font-size: 16px;
-            cursor: pointer;
-            margin-top: 10px;
-            transition: background 0.3s ease, transform 0.3s ease;
-        }
-
-        .login-container button:hover {
-            background: rgba(45, 62, 252, 1);
-            transform: translateY(-2px);
-        }
-
-        .error {
-            background: rgba(255, 0, 0, 0.2);
-            padding: 10px;
-            border-radius: 8px;
-            margin-bottom: 15px;
-            font-size: 14px;
-            text-align: center;
-            color: #d32f2f;
-            border: 1px solid rgba(255, 0, 0, 0.3);
-        }
-
-        .success {
-            background: rgba(76, 175, 80, 0.2);
-            padding: 10px;
-            border-radius: 8px;
-            margin-bottom: 15px;
-            font-size: 14px;
-            text-align: center;
-            color: #2e7d32;
-            border: 1px solid rgba(76, 175, 80, 0.3);
-        }
-
         .logo {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             text-align: center;
         }
 
         .logo img {
-            width: 235px;
+            width: 280px;
+            max-width: 80%;
+        }
+
+        .login-container h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: 700;
+            font-size: 24px;
+            color: #1e2bbc;
         }
 
         .input-label {
             color: #333;
-            font-weight: 500;
-            font-size: 14px;
-            margin-bottom: 5px;
-            margin-top: 15px;
+            font-weight: 600;
+            font-size: 16px;
+            margin-bottom: 8px;
+            margin-top: 20px;
             display: block;
         }
 
-        .admin-indicator {
-            background: rgba(255, 193, 7, 0.1);
-            border: 1px solid rgba(255, 193, 7, 0.3);
-            color: #856404;
-            padding: 8px 12px;
-            border-radius: 6px;
-            font-size: 12px;
+        .login-container input {
+            width: 100%;
+            padding: 18px 20px;
+            margin: 10px 0;
+            border-radius: 12px;
+            border: 2px solid #e0e0e0;
+            outline: none;
+            font-size: 16px;
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+            transition: all 0.3s ease;
+        }
+
+        .login-container input:focus {
+            border-color: rgb(51, 149, 174);
+            box-shadow: 0 0 0 3px rgba(51, 149, 174, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .login-container button {
+            width: 100%;
+            padding: 18px;
+            border-radius: 12px;
+            border: none;
+            background: rgba(30, 43, 188, 1);
+            color: #fff;
+            font-weight: 700;
+            font-size: 18px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(30, 43, 188, 0.3);
+        }
+
+        .login-container button:hover {
+            background: rgba(45, 62, 252, 1);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(30, 43, 188, 0.4);
+        }
+
+        .login-container button:active {
+            transform: translateY(0);
+        }
+
+        .error {
+            background: rgba(255, 0, 0, 0.1);
+            padding: 16px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            font-size: 16px;
             text-align: center;
-            margin-bottom: 15px;
+            color: #d32f2f;
+            border: 2px solid rgba(255, 0, 0, 0.2);
+        }
+
+        .success {
+            background: rgba(76, 175, 80, 0.1);
+            padding: 16px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            font-size: 16px;
+            text-align: center;
+            color: #2e7d32;
+            border: 2px solid rgba(76, 175, 80, 0.2);
+        }
+
+        .admin-indicator {
+            background: rgba(255, 193, 7, 0.15);
+            border: 2px solid rgba(255, 193, 7, 0.3);
+            color: #856404;
+            padding: 12px 16px;
+            border-radius: 10px;
+            font-size: 14px;
+            text-align: center;
+            margin-bottom: 20px;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -231,9 +264,9 @@ if (isset($_POST['login'])) {
             background: rgba(220, 53, 69, 0.8);
             color: white;
             border: none;
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 10px;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 12px;
             cursor: pointer;
             transition: all 0.3s ease;
         }
@@ -245,56 +278,98 @@ if (isset($_POST['login'])) {
 
         .quick-switch {
             background: rgba(30, 43, 188, 0.1);
-            padding: 12px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            border: 1px solid rgba(30, 43, 188, 0.2);
+            padding: 16px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            border: 2px solid rgba(30, 43, 188, 0.2);
             text-align: center;
         }
 
         .quick-switch p {
-            font-size: 12px;
+            font-size: 14px;
             color: #666;
-            margin-bottom: 8px;
+            margin-bottom: 12px;
+            font-weight: 600;
         }
 
         .switch-buttons {
             display: flex;
-            gap: 8px;
+            gap: 10px;
+            flex-wrap: wrap;
         }
 
         .switch-btn {
             flex: 1;
-            padding: 6px 10px;
-            background: rgba(30, 43, 188, 0.1);
+            min-width: 120px;
+            padding: 10px 12px;
+            background: rgba(30, 43, 188, 0.15);
             color: rgba(30, 43, 188, 1);
-            border: 1px solid rgba(30, 43, 188, 0.3);
-            border-radius: 5px;
-            font-size: 11px;
+            border: 2px solid rgba(30, 43, 188, 0.3);
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
         }
 
         .switch-btn:hover {
-            background: rgba(30, 43, 188, 0.2);
+            background: rgba(30, 43, 188, 0.25);
+            transform: translateY(-2px);
         }
 
         .notification {
             position: fixed;
             top: 20px;
             right: 20px;
-            padding: 12px 16px;
-            background: rgba(76, 175, 80, 0.9);
+            padding: 16px 20px;
+            background: rgba(76, 175, 80, 0.95);
             color: white;
-            border-radius: 8px;
-            font-size: 14px;
+            border-radius: 12px;
+            font-size: 16px;
             z-index: 9999;
             transform: translateX(300px);
             transition: transform 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
         .notification.show {
             transform: translateX(0);
+        }
+
+        .footer-text {
+            text-align: center;
+            margin-top: 25px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 480px) {
+            .login-container {
+                padding: 30px 20px;
+            }
+            
+            .logo img {
+                width: 240px;
+            }
+            
+            .login-container h2 {
+                font-size: 22px;
+            }
+            
+            .login-container input {
+                padding: 16px;
+                font-size: 15px;
+            }
+            
+            .login-container button {
+                padding: 16px;
+                font-size: 16px;
+            }
+            
+            .switch-buttons {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
@@ -311,7 +386,7 @@ if (isset($_POST['login'])) {
         <div class="logo">
             <img src="images/image.png" alt="Logo SMPN 6 Cibitung">
         </div>
-        <h2>Pemilihan Ketua Osis</h2>
+        <h2>Pemilihan Ketua OSIS</h2>
 
         <?php
         if ($loginFailed) {
@@ -331,6 +406,10 @@ if (isset($_POST['login'])) {
         <input type="password" name="password" id="password" autocomplete="off" value="" placeholder="Masukkan password" required>
 
         <button type="submit" name="login">MASUK</button>
+        
+        <div class="footer-text">
+            SMPN 6 Cibitung © <?php echo date('Y'); ?>
+        </div>
     </form>
 
     <script>
@@ -381,7 +460,6 @@ if (isset($_POST['login'])) {
     </script>
 </body>
 </html>
-
 <?php
 mysqli_close($konek);
 ?>
